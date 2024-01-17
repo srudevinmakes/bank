@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Welcome - ABC Bank
+{% endblock %}
+
+{% block content %}
+  <h1>Hello, {{ obj }}</h1>
+
+  <div class="container mt-5">
+    <img src="{% static 'bank.jpg' %}" alt="ABC Bank Image" class="img-fluid">
+  </div>
+
+  <form action="add/" method="get">
+    <input type="text" name="num1" placeholder="Number 1">
+    <input type="text" name="num2" placeholder="Number 2">
+    <input type="submit" value="Add">
+  </form>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Application Form - ABC Bank
+{% endblock %}
+
+{% block content %}
+  <h2>Application Form</h2>
+  <!-- Registration form fields -->
+  <form method="post" action="{% url 'register' %}">
+    {% csrf_token %}
+    <label for="username">Username:</label>
+    <input type="text" name="username" required>
+    <br>
+    <label for="first_name">First Name:</label>
+    <input type="text" name="first_name" required>
+    <br>
+    <label for="last_name">Last Name:</label>
+    <input type="text" name="last_name" required>
+    <br>
+    <label for="email">Email:</label>
+    <input type="email" name="email" required>
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" name="password" required>
+    <br>
+    <label for="password1">Confirm Password:</label>
+    <input type="password" name="password1" required>
+    <br>
+    <label for="districts">District:</label>
+    <select name="districts" required>
+      {% for district in districts %}
+        <option value="{{ districts }}">{{ district }}</option>
+      {% endfor %}
+    </select>
+    <br>
+    <label for="branches">Branch:</label>
+    <select name="branches" required>
+      {% for district, branch_list in branches.items %}
+        <optgroup label="{{ districts }}">
+          {% for branch in branch_list %}
+            <option value="{{ branches }}">{{ branch }}</option>
+          {% endfor %}
+        </optgroup>
+      {% endfor %}
+    </select>
+    <br>
+    <!-- Add other registration form fields if needed -->
+    <input type="submit" value="Register">
+  </form>
+  <br>
+  <a href="{% url 'logout' %}">Logout</a>
+{% endblock %}
